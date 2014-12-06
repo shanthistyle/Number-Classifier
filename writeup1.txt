@@ -1,0 +1,20 @@
+(a) 
+error rate for k = 1 is 8.9 %
+error rate for k = 2 is 8.9 %
+error rate for k = 5 is 10.0 %
+error rate for k = 10 is 10.7 %
+error rate for k = 25 is 12.8 %
+
+(b) 
+Amongst our k nearest neighbors, if there was the same majority count for more than one label, I would return the one that occurred first in the training set. I do this using numpy.argmax which returns the index of the first occurrence of max value in the set of counts.
+
+(c)
+I tried breaking ties arbitrarily but then k = 2 had a larger error rate. Our algorithm performed the same for k = 1 and k = 2 because of the way we broke ties. If there was a tie in the majority count, we would return the first occurrence in the set. In the case of k = 2, a tie break would return the first occurrence which would be the same result as for k = 1. This is why k = 1 and k = 2 has the same error rate, because if there were two unique k nearest neighbors, it would return the first one. 
+
+(d)
+Examples of misclassifications of validation data:
+4th is 5, we thought 3 ~ really thick number, majority of pixels that would occur for ‘3’ are white
+15th is 6, we thought 5 ~ six and five have same curvature 
+40th is 7, we thought 1 ~ sevens and ones look really similar, especially when written with the extra line in the middle as it is here
+Explanation + New Feature Suggestion: When looking at these images, I can see that most of the misclassification resulted from not considering that some numbers are inherently similar to other numbers, especially when written in certain ways. First, we need to include more training data that classify these “on the border” numbers. In terms of new features, we could cluster certain groups of pixels and make them a single feature to demonstrate that co-occurrences of these pixels could indicate one classification over another (when it comes to similar numbers).  
+
